@@ -8,3 +8,10 @@ body,
 html {
   height: 100%;
 }
+
+.info.legend {
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+  opacity: 0.8;
+}

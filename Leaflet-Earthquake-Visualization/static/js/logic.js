@@ -43,17 +43,17 @@ function createFeatures(earthquakeData) {
 function getColor(depth) {
     switch (true) {
         case depth > 90:
-            return "#FF5733";
+            return "#FF0000";
         case depth > 70:
-            return "#FF8B33";
+            return "#FF6600";
         case depth > 50:
-            return "#FFC133";
+            return "#FFCC00";
         case depth > 30:
-            return "#FFD433";
+            return "#FFFF00";
         case depth > 10:
-            return "#FFDD33";
+            return "#99CC00";
         default:
-            return "#FFEE33";
+            return "#00FF00";
     }
 }
 
@@ -75,27 +75,27 @@ function createMap(earthquakes) {
     var legend = L.control({ position: "bottomright" });
 
     legend.onAdd = function() {
-        var div = L.DomUtil.create("div", "info legend");
-        var depths = [-10, 10, 30, 50, 70, 90];
-        var colors = [
-            "#FFEE33",
-            "#FFDD33",
-            "#FFD433",
-            "#FFC133",
-            "#FF8B33",
-            "#FF5733"
-        ];
+        var div = L.DomUtil.create("div", "info legend"),
+            depths = [-10, 10, 30, 50, 70, 90],
+            labels = [],
+            from, to, color;
 
         // Loop through our density intervals and generate a label with a colored square for each interval
-        for (var i = 0; i < depths.length; i++) {
-            div.innerHTML +=
-                '<i style="background:' + colors[i] + '"></i> ' +
-                depths[i] + (depths[i + 1] ? '&ndash;' + depths[i + 1] + '<br>' : '+');
-        }
+    for (var i = 0; i < depths.length; i++) {
+        from = depths[i];
+        to = depths[i + 1];
+        color = getColor(from + 1);
 
-        return div;
-    };
+        labels.push(
+            '<i style="background:' + color + '; width: 18px; height: 18px; float: left; margin-right: 8px;"></i> ' +
+            from + (to ? '&ndash;' + to : '+')
+        );
+    }
 
-    legend.addTo(myMap);
+    div.innerHTML = labels.join('<br>');
+    return div;
+};
+
+legend.addTo(myMap);
 
 }
