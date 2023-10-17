@@ -37,4 +37,4 @@ Your first task is to visualize an earthquake dataset. Complete the following st
    - Your visualization should look something like the preceding map.
 
 ---
-**Deployed App:** [Earthquake Data Mapping]([url](https://daniel-wallach.github.io/Module-15-Mapping/)https://daniel-wallach.github.io/Module-15-Mapping/)
+**Deployed App:** [Earthquake Data Mapping](https://daniel-wallach.github.io/Module-15-Mapping/)
